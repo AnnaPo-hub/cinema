@@ -19,7 +19,7 @@ public class Manager {
     CinemaData film = new CinemaData(9, "For all Mankind", "serial");
 
 
-    public void addFilm(CinemaData film) {
+    public CinemaData[] addFilm(CinemaData film) {
         int length = list.length + 1;
         CinemaData[] addedFilm = new CinemaData[length];
         for (int i = 0; i < list.length; i++) {
@@ -28,15 +28,19 @@ public class Manager {
         int lastIndex = addedFilm.length - 1;
         addedFilm[lastIndex] = film;
         list = addedFilm;
+        System.out.println(list);
+        return list;
+
 //        for (int i = 0; i < list.length; i++) {
 //            System.out.println(i);
     }
 
 
-    public void showAddedFilms() {
+    public CinemaData[] showAddedFilms() {
         for (int i = list.length - 1; i > list.length - (neededQuantityOfFilmsToAdd + 1) & i >= 0; i--) {
             System.out.print(list[i]);
         }
+        return new CinemaData[0];
     }
 
 }
