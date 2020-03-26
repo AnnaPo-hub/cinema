@@ -18,8 +18,10 @@ public class AfishaManager {
 
 
     public void addFilm(CinemaData film) {
+
         repo.save(film);
     }
+
 
     public CinemaData[] showAddedFilms() {
         int c = 0;
@@ -34,7 +36,15 @@ public class AfishaManager {
         return listNew;
     }
 
+    public CinemaData[] showAll(){
+        CinemaData[] all = repo.findAll();
+        return all;
+    }
+
+
 }
+
+
 
 
 

@@ -1,25 +1,35 @@
-//package ru.netology.domain;
-//
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.junit.jupiter.MockitoExtension;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//@ExtendWith(MockitoExtension.class)
-//class AfishaManagerTest {
-//    @Mock
-//    private AfishaRepository repository;
-//    @InjectMocks
-//    private AfishaManager manager;
-//
-//    @Test
-//    void addFilm() {
-//        manager.addFilm(repository.film);
-//        CinemaData[] expected = {new CinemaData(9, "For all Mankind", "serial")};
-//        manager.setNeededQuantityOfFilmsToAdd(1);
-//        CinemaData[] actual = manager.showAddedFilms();
-//        assertArrayEquals(expected, actual);
-//    }
-//}
+package ru.netology.domain;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
+
+@ExtendWith(MockitoExtension.class)
+class AfishaManagerTest {
+    @Mock
+    private AfishaRepository repository;
+    @InjectMocks
+    private AfishaManager manager;
+    CinemaData firstForTest = new CinemaData(11, "Troll", "children");
+    CinemaData secondForTest = new CinemaData(12, "Troll2", "children");
+
+    CinemaData thirdForTest = new CinemaData(13, "Troll3", "children");
+
+
+    @Test
+    void addFilm() {
+        CinemaData[] returned = new CinemaData[]{firstForTest, secondForTest};
+        doReturn(returned).when(repository).findAll();
+        doNothing().when(repository).save(thirdForTest);
+        manager.addFilm(thirdForTest);
+        CinemaData[] expected = new CinemaData[]{firstForTest, secondForTest,thirdForTest};
+        CinemaData[] actual = manager.showAll();
+        assertArrayEquals(expected, actual);
+    }
+}

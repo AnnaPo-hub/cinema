@@ -10,7 +10,7 @@ class AfishaRepositoryTest {
     AfishaRepository repo = new AfishaRepository();
 
     @Test
-    void findAll() {
+    void shouldFindAll() {
         CinemaData[] expected = {new CinemaData(1, "Onward", "cartoon"),
                 new CinemaData(2, "Bladshort", "action"),
                 new CinemaData(3, "Gentlemen", "action"),
@@ -24,7 +24,7 @@ class AfishaRepositoryTest {
     }
 
     @Test
-    void save() {
+    void shouldSave() {
         repo.save(repo.film);
         CinemaData[] expected = {new CinemaData(1, "Onward", "cartoon"),
                 new CinemaData(2, "Bladshort", "action"),
@@ -41,7 +41,7 @@ class AfishaRepositoryTest {
     }
 
     @Test
-    void findByID() {
+    void shouldFindByID() {
         CinemaData expected = new CinemaData(3, "Gentlemen", "action");
         CinemaData actual = repo.findByID(3);
         assertEquals(expected, actual);
@@ -50,7 +50,7 @@ class AfishaRepositoryTest {
     }
 
     @Test
-    void removeById() {
+    void shouldRemoveById() {
         repo.removeById(4);
         CinemaData[] expected = {new CinemaData(1, "Onward", "cartoon"),
                 new CinemaData(2, "Bladshort", "action"),
@@ -61,9 +61,24 @@ class AfishaRepositoryTest {
         CinemaData[] actual = repo.findAll();
         assertArrayEquals(expected, actual);
     }
+    @Test
+    void shouldRemoveByIdIfIDDoesNotExist() {
+        repo.removeById(11);
+        CinemaData[] expected = {new CinemaData(1, "Onward", "cartoon"),
+                new CinemaData(2, "Bladshort", "action"),
+                new CinemaData(3, "Gentlemen", "action"),
+                new CinemaData(4, "Invisible", "Thriller"),
+                new CinemaData(5, "Troll's tour", "cartoon"),
+                new CinemaData(7, "I BelieveInLove", "romance"),
+                new CinemaData(8, "MyFriendMrPercivalle", "children")};
+        CinemaData[] actual = repo.findAll();
+        assertArrayEquals(expected, actual);
+    }
+
+
 
     @Test
-    void removeAll() {
+    void shouldRemoveAll() {
         repo.removeAll();
         CinemaData[] expected = {};
         CinemaData[] actual = repo.findAll();
