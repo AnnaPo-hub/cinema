@@ -39,7 +39,6 @@ public class AfishaRepository {
         return null;
     }
 
-
     void removeById(int id) {
         boolean b = false;
         for (CinemaData item : list) {
@@ -67,7 +66,3 @@ public class AfishaRepository {
 
         }
     }
-
-
-
-

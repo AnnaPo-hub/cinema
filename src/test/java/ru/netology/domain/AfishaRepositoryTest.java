@@ -61,6 +61,7 @@ class AfishaRepositoryTest {
         CinemaData[] actual = repo.findAll();
         assertArrayEquals(expected, actual);
     }
+
     @Test
     void shouldRemoveByIdIfIDDoesNotExist() {
         repo.removeById(11);

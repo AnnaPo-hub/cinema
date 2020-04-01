@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class ManagerTest {
-    private AfishaManager manager = new AfishaManager();
+
+    private AfishaManager manager = new AfishaManager(new AfishaRepository());
 
     CinemaData film = new CinemaData(9, "For all Mankind", "serial");
 
@@ -18,12 +19,4 @@ class ManagerTest {
         assertArrayEquals(expected, actual);
     }
 
-//    @Test
-//    void showAddedFilms() {
-//        manager.addFilm(film);
-//        CinemaData[] actual = manager.showAddedFilms();
-//        CinemaData[] expected = {new CinemaData(7, "I BelieveInLove", "romance"),
-//                new CinemaData(8, "MyFriendMrPercivalle", "children"),
-//                new CinemaData(9, "For all Mankind", "serial")};
-//    }
 }

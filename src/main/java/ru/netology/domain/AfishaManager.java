@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AfishaManager {
-    private AfishaRepository repo = new AfishaRepository();
+    private AfishaRepository repo;
     private int neededQuantityOfFilmsToAdd = 3;
 
 
@@ -27,7 +27,7 @@ public class AfishaManager {
         int c = 0;
         CinemaData[] listNew = new CinemaData[neededQuantityOfFilmsToAdd];
         CinemaData[] all = repo.findAll();
-        for (int i = all.length - 1; i > all.length - (neededQuantityOfFilmsToAdd + 1) & i >= 0; i--) {
+        for (int i = all.length - 1; i > all.length - (neededQuantityOfFilmsToAdd + 1) && i >= 0; i--) {
 
             listNew[c] = all[i];
             System.out.print(all[i]);
@@ -40,12 +40,4 @@ public class AfishaManager {
         CinemaData[] all = repo.findAll();
         return all;
     }
-
-
 }
-
-
-
-
-
-
