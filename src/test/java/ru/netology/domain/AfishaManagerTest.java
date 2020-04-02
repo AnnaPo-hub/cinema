@@ -20,15 +20,25 @@ class AfishaManagerTest {
     CinemaData secondForTest = new CinemaData(12, "Troll2", "children");
     CinemaData thirdForTest = new CinemaData(13, "Troll3", "children");
 
-
     @Test
-    void shouldAddFilm() {
+    void shouldShowAddedFilms() {
         CinemaData[] returned = new CinemaData[]{firstForTest, secondForTest};
         doReturn(returned).when(list).findAll();
         doNothing().when(list).save(thirdForTest);
         manager.addFilm(thirdForTest);
-        manager.setNeededQuantityOfFilmsToAdd(1);
-        CinemaData[] expected = new CinemaData[]{ thirdForTest};
+        manager.setNeededQuantityOfFilmsToAdd(2);
+        CinemaData[] expected = new CinemaData[]{secondForTest, firstForTest};
+        CinemaData[] actual = manager.showAddedFilms();
+        assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
+    void shouldShowAll() {
+        CinemaData[] returned = new CinemaData[]{firstForTest, secondForTest};
+        doReturn(returned).when(list).findAll();
+//        doNothing().when(list).save(thirdForTest);
+        CinemaData[] expected = new CinemaData[]{firstForTest, secondForTest};
         CinemaData[] actual = manager.showAll();
         assertArrayEquals(expected, actual);
     }
